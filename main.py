@@ -1,8 +1,5 @@
-from classes.user import User
+import flet as ft
+from webapp.main import main as app_main
 
 if __name__ == "__main__":
-    print("SkillSync System Running...\n")
-
-    user = User("Jarred", 21, "Manila", "Mechanic", "Expert in diesel engines")
-    print("Sample User:")
-    print(user)
+    ft.app(target=app_main)
