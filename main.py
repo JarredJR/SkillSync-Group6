@@ -1,5 +1,19 @@
 import flet as ft
-from webapp.main import main as app_main
+from pages.login import login_view
+from pages.signup import signup_view
 
-if __name__ == "__main__":
-    ft.app(target=app_main)
+def main(page: ft.Page):
+    page.title = "SkillSync"
+    
+    def route_change(route):
+        page.views.clear()
+        if page.route == "/signup":
+            page.views.append(signup_view(page))
+        else:
+            page.views.append(login_view(page))
+        page.update()
+
+    page.on_route_change = route_change
+    page.go(page.route)
+
+ft.app(target=main)
