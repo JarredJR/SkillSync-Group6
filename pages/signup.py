@@ -1,9 +1,9 @@
 import flet as ft
 import json
 import os
+from utils.path_helper import resource_path
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-USERS_FILE = os.path.join(BASE_DIR, "data", "users.json")
+USERS_FILE = resource_path("users.json")
 
 def signup_view(page: ft.Page):
     email = ft.TextField(label="Email", width=300)
@@ -29,6 +29,7 @@ def signup_view(page: ft.Page):
                     users = []
 
         users.append(user)
+        os.makedirs(os.path.dirname(USERS_FILE), exist_ok=True)
         with open(USERS_FILE, "w") as f:
             json.dump(users, f, indent=4)
 
@@ -48,4 +49,3 @@ def signup_view(page: ft.Page):
             message
         ]
     )
-

@@ -2,6 +2,7 @@ import flet as ft
 import json
 import os
 from components.topbar import topbar
+from utils.path_helper import resource_path
 
 def browse_providers_view(page: ft.Page):
     user = page.session.get("user")
@@ -40,15 +41,17 @@ def browse_providers_view(page: ft.Page):
 
     def load_providers():
         result_column.controls.clear()
-        if not os.path.exists("data/providers.json"):
+        providers_path = resource_path("providers.json")
+        if not os.path.exists(providers_path):
             result_column.controls.append(ft.Text("No providers found."))
             page.update()
             return
-        with open("data/providers.json", "r") as f:
+        with open(providers_path, "r") as f:
             try:
                 providers = json.load(f)
             except json.JSONDecodeError:
                 providers = []
+
         filtered = []
         for p in providers:
             if category_dropdown.value and p.get("category") != category_dropdown.value:
@@ -56,6 +59,7 @@ def browse_providers_view(page: ft.Page):
             if search_field.value and search_field.value.lower() not in p.get("username", "").lower():
                 continue
             filtered.append(p)
+
         if not filtered:
             result_column.controls.append(ft.Text("No matching providers found."))
         else:

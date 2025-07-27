@@ -1,6 +1,9 @@
 import flet as ft
 import json
 import os
+from utils.path_helper import resource_path
+
+SERVICE_REQUESTS_FILE = resource_path("data/requests.json")
 
 SERVICE_CATEGORIES = [
     "Mechanic", "Electrician", "Plumber", "HVAC Technician", "Carpenter",
@@ -47,15 +50,17 @@ def service_form_view(page: ft.Page):
             "description": description_field.value,
             "location": location_field.value
         }
-        if os.path.exists("data/requests.json"):
-            with open("data/requests.json", "r") as f:
-                all_requests = json.load(f)
+        if os.path.exists(SERVICE_REQUESTS_FILE):
+            with open(SERVICE_REQUESTS_FILE, "r") as f:
+                try:
+                    all_requests = json.load(f)
+                except json.JSONDecodeError:
+                    all_requests = []
         else:
             all_requests = []
 
         all_requests.append(request_data)
-
-        with open("data/requests.json", "w") as f:
+        with open(SERVICE_REQUESTS_FILE, "w") as f:
             json.dump(all_requests, f, indent=4)
 
         page.snack_bar = ft.SnackBar(ft.Text("Service request submitted!"))

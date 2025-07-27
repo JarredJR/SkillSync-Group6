@@ -1,4 +1,11 @@
 import flet as ft
+import sys, os
+
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and PyInstaller bundle"""
+    base_path = getattr(sys, '_MEIPASS', os.path.abspath("."))
+    return os.path.join(base_path, relative_path)
+
 from pages.login import login_view
 from pages.signup import signup_view
 from pages.role_question import role_question_view
@@ -8,6 +15,7 @@ from pages.browse_providers import browse_providers_view
 from pages.dashboard import dashboard_view
 from pages.provider_requests import provider_requests_view
 from pages.chat import chat_view  
+from pages.messages import messages_view  
 
 def main(page: ft.Page):
     page.title = "SkillSync"
@@ -20,7 +28,7 @@ def main(page: ft.Page):
 
         protected_routes = [
             "/dashboard", "/role_question", "/provider_setup",
-            "/request_service", "/browse_providers", "/provider_requests", "/chat"
+            "/request_service", "/browse_providers", "/provider_requests", "/chat", "/messages"
         ]
         if not current_user and page.route in protected_routes:
             page.go("/login")
@@ -42,6 +50,8 @@ def main(page: ft.Page):
             page.views.append(provider_requests_view(page))
         elif page.route == "/chat":
             page.views.append(chat_view(page))
+        elif page.route == "/messages":
+            page.views.append(messages_view(page))
         else:
             page.views.append(login_view(page))
 

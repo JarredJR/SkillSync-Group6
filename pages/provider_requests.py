@@ -1,6 +1,7 @@
 import flet as ft
 import json
 import os
+from utils.path_helper import resource_path
 from components.topbar import topbar
 
 def provider_requests_view(page: ft.Page):
@@ -13,7 +14,8 @@ def provider_requests_view(page: ft.Page):
 
     def load_requests():
         request_list.controls.clear()
-        requests_path = "data/requests.json"
+        requests_path = resource_path("requests.json")
+
         if not os.path.exists(requests_path):
             request_list.controls.append(ft.Text("No service requests available."))
         else:
@@ -34,7 +36,10 @@ def provider_requests_view(page: ft.Page):
                                     ft.Text(f"Service: {req.get('category', 'N/A')}", weight="bold"),
                                     ft.Text(f"Description: {req.get('description', '')}"),
                                     ft.Text(f"Location: {req.get('location', '')}"),
-                                    ft.ElevatedButton("Message", on_click=lambda e, r=req: open_chat(r))
+                                    ft.ElevatedButton(
+                                        "Message",
+                                        on_click=lambda e, r=req: open_chat(r)
+                                    )
                                 ]),
                                 padding=10
                             )

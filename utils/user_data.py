@@ -1,22 +1,22 @@
 import json
 import os
+from utils.path_helper import resource_path
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_FILE = os.path.join(BASE_DIR, "data", "users.json")
+USERS_FILE = resource_path("data/users.json")
 
 def load_users():
-    if not os.path.exists(DATA_FILE):
+    if not os.path.exists(USERS_FILE):
         return []
-    with open(DATA_FILE, "r") as f:
-        try:
+    try:
+        with open(USERS_FILE, "r") as f:
             return json.load(f)
-        except json.JSONDecodeError:
-            return []
+    except json.JSONDecodeError:
+        return []
 
 def save_user(new_user):
     users = load_users()
     users.append(new_user)
-    with open(DATA_FILE, "w") as f:
+    with open(USERS_FILE, "w") as f:
         json.dump(users, f, indent=4)
 
 def validate_user(email, password):

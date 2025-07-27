@@ -1,8 +1,9 @@
 import json
 import os
 from datetime import datetime
+from utils.path_helper import resource_path
 
-MESSAGES_FILE = "data/messages.json"
+MESSAGES_FILE = resource_path("data/messages.json")
 
 def _load_messages():
     if not os.path.exists(MESSAGES_FILE):
@@ -14,7 +15,6 @@ def _load_messages():
         return []
 
 def _save_messages(msgs):
-    os.makedirs("data", exist_ok=True)
     with open(MESSAGES_FILE, "w") as f:
         json.dump(msgs, f, indent=4)
 

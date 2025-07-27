@@ -1,9 +1,9 @@
 import flet as ft
 import json
 import os
+from utils.path_helper import resource_path
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REQUESTS_FILE = os.path.join(BASE_DIR, "data", "service_requests.json")
+REQUESTS_FILE = resource_path("requests.json")
 
 def request_service_view(page: ft.Page):
     service_category_dropdown = ft.Dropdown(
@@ -59,16 +59,18 @@ def request_service_view(page: ft.Page):
             "location": location.value,
         }
 
+  
         if not os.path.exists(REQUESTS_FILE):
+            os.makedirs(os.path.dirname(REQUESTS_FILE), exist_ok=True)
             with open(REQUESTS_FILE, "w") as f:
                 json.dump([], f)
 
+        
         with open(REQUESTS_FILE, "r+") as f:
             try:
                 data = json.load(f)
             except json.JSONDecodeError:
                 data = []
-
             data.append(request_data)
             f.seek(0)
             json.dump(data, f, indent=4)
@@ -77,7 +79,7 @@ def request_service_view(page: ft.Page):
         page.update()
 
     return ft.View(
-        "/request-service",
+        "/request_service",
         controls=[
             ft.Text("Request a Service", size=24, weight="bold"),
             service_category_dropdown,

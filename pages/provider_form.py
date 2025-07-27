@@ -1,8 +1,9 @@
 import flet as ft
 import json
 import os
+from utils.path_helper import resource_path
 
-providers_file = "data/providers.json"
+providers_file = resource_path("data/providers.json")
 
 def provider_form_view(page: ft.Page):
     category_dropdown = ft.Dropdown(
@@ -47,7 +48,6 @@ def provider_form_view(page: ft.Page):
             providers = []
 
         providers.append(provider)
-
         os.makedirs(os.path.dirname(providers_file), exist_ok=True)
         with open(providers_file, "w") as f:
             json.dump(providers, f, indent=2)

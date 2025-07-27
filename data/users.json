@@ -28,5 +28,17 @@
         "username": "6666",
         "birthday": "66666",
         "password": "666666"
+    },
+    {
+        "email": "y",
+        "username": "y",
+        "birthday": "y",
+        "password": "y"
+    },
+    {
+        "email": "j",
+        "username": "j",
+        "birthday": "j",
+        "password": "j"
     }
 ]
