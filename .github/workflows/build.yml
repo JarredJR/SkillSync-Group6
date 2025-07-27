@@ -1,16 +1,19 @@
-name: Build SkillSync
+name: Build SkillSync App
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
-  build-windows:
-    runs-on: windows-latest
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+
     steps:
-      - name: Checkout repository
+      - name: Check out the repository
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -21,40 +24,13 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install flet flet-cli pyinstaller
+          pip install flet flet-cli flet-desktop pyinstaller
 
-      - name: Build Windows EXE
-        run: |
-          pyinstaller --noconfirm --onefile --windowed --name "SkillSync" main.py
+      - name: Build executable
+        run: pyinstaller --noconfirm --onefile --windowed --name "SkillSync" main.py
 
-      - name: Upload Windows EXE
-        uses: actions/upload-artifact@v4
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
         with:
-          name: SkillSync-Windows
-          path: dist/SkillSync.exe
-
-  build-macos:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-
-      - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          pip3 install flet flet-cli pyinstaller
-
-      - name: Build macOS App
-        run: |
-          pyinstaller --noconfirm --onefile --windowed --name "SkillSync" main.py
-
-      - name: Upload macOS App
-        uses: actions/upload-artifact@v4
-        with:
-          name: SkillSync-macOS
-          path: dist/SkillSync
+          name: SkillSync-${{ matrix.os }}
+          path: dist/*
