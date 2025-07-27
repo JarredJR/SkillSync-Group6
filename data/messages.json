@@ -1,0 +1,26 @@
+[
+    {
+        "from": "raymundojarredjay@gmail.com",
+        "to": "123",
+        "message": "hi, what is your rates to fix my toilet?",
+        "timestamp": "2025-07-26T12:12:43"
+    },
+    {
+        "from": "123",
+        "to": "123",
+        "message": "hello 321",
+        "timestamp": "2025-07-27T09:13:50"
+    },
+    {
+        "from": "123",
+        "to": "raymundojarredjay@gmail.com",
+        "message": "yo admin",
+        "timestamp": "2025-07-27T09:14:07"
+    },
+    {
+        "from": "raymundojarredjay@gmail.com",
+        "to": "123",
+        "message": "whats up bro",
+        "timestamp": "2025-07-27T09:14:23"
+    }
+]

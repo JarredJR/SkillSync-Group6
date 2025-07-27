@@ -1,0 +1,51 @@
+[
+    {
+        "username": "admin",
+        "email": "raymundojarredjay@gmail.com",
+        "category": "Plumber",
+        "description": "toilet",
+        "location": "pasig"
+    },
+    {
+        "username": "123",
+        "email": "123",
+        "category": "Mechanic",
+        "description": "23",
+        "location": "332"
+    },
+    {
+        "username": "admin",
+        "email": "raymundojarredjay@gmail.com",
+        "category": "Carpenter",
+        "description": "2",
+        "location": "12"
+    },
+    {
+        "username": "123",
+        "email": "123",
+        "category": "Plumber",
+        "description": "23",
+        "location": "32"
+    },
+    {
+        "username": "123",
+        "email": "123",
+        "category": "Plumber",
+        "description": "32",
+        "location": "32"
+    },
+    {
+        "username": "admin",
+        "email": "raymundojarredjay@gmail.com",
+        "category": "Mason/Tiler",
+        "description": "i want my bathroom tiles to be replaced",
+        "location": "pasig alvin street "
+    },
+    {
+        "username": "123",
+        "email": "123",
+        "category": "Carpenter",
+        "description": "123",
+        "location": "123"
+    }
+]

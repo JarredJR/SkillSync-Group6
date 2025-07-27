@@ -1,0 +1,32 @@
+[
+    {
+        "email": "raymundojarredjay@gmail.com",
+        "username": "admin",
+        "birthday": "2003-10-31",
+        "password": "123"
+    },
+    {
+        "email": "ravenbobiles@gmail.com",
+        "username": "raven",
+        "birthday": "2003-07-21",
+        "password": "123"
+    },
+    {
+        "email": "test@mail.com",
+        "username": "test1",
+        "birthday": "2003-10-31",
+        "password": "123"
+    },
+    {
+        "email": "123",
+        "username": "123",
+        "birthday": "123",
+        "password": "123"
+    },
+    {
+        "email": "666",
+        "username": "6666",
+        "birthday": "66666",
+        "password": "666666"
+    }
+]
