@@ -22,7 +22,7 @@ def login_view(page: ft.Page):
 
         for user in users:
             if user.get("email") == email.value and user.get("password") == password.value:
-                page.session.set("user", user)  # Store the full user dictionary
+                page.session.set("user", user)  
                 page.go("/dashboard")
                 return
 

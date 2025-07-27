@@ -7,7 +7,7 @@ from pages.request_service import request_service_view
 from pages.browse_providers import browse_providers_view
 from pages.dashboard import dashboard_view
 from pages.provider_requests import provider_requests_view
-from pages.chat import chat_view  # Ensure chat.py exists if you added messaging
+from pages.chat import chat_view  
 
 def main(page: ft.Page):
     page.title = "SkillSync"
@@ -18,7 +18,6 @@ def main(page: ft.Page):
         page.views.clear()
         current_user = page.session.get("user")
 
-        # Protect routes
         protected_routes = [
             "/dashboard", "/role_question", "/provider_setup",
             "/request_service", "/browse_providers", "/provider_requests", "/chat"
@@ -27,7 +26,6 @@ def main(page: ft.Page):
             page.go("/login")
             return
 
-        # Routing
         if page.route == "/signup":
             page.views.append(signup_view(page))
         elif page.route == "/dashboard":

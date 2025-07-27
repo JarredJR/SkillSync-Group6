@@ -13,4 +13,4 @@ class User:
         return self.specialization
 
     def get_available_slots(self):
-        return ["Monday 10AM", "Wednesday 3PM"]  # Placeholder
+        return ["Monday 10AM", "Wednesday 3PM"] 

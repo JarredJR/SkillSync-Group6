@@ -47,8 +47,6 @@ def service_form_view(page: ft.Page):
             "description": description_field.value,
             "location": location_field.value
         }
-
-        # Save to data/requests.json
         if os.path.exists("data/requests.json"):
             with open("data/requests.json", "r") as f:
                 all_requests = json.load(f)
@@ -64,7 +62,6 @@ def service_form_view(page: ft.Page):
         page.snack_bar.open = True
         page.update()
 
-        # Clear fields after submit
         category_dropdown.value = None
         description_field.value = ""
         location_field.value = ""

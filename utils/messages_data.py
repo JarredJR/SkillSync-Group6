@@ -42,6 +42,5 @@ def get_thread(user_email: str, partner_email: str):
     msgs = _load_messages()
     thread = [m for m in msgs if (m["from"] == user_email and m["to"] == partner_email) or
                                    (m["from"] == partner_email and m["to"] == user_email)]
-    # Sort by timestamp (safe because ISO)
     thread.sort(key=lambda m: m["timestamp"])
     return thread
